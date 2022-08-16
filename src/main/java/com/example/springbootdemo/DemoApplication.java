@@ -1,21 +1,15 @@
 package com.example.springbootdemo;
 
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import javax.websocket.server.PathParam;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -25,13 +19,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.models.Employee;
+import com.example.springbootdemo.models.Employee;
+import com.example.springbootdemo.repos.EmployeeRepo;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@SpringBootApplication
 @RestController
+@SpringBootApplication
 public class DemoApplication {
+
+  // Autowired means: Inject an instance automatically when class instance is created 
+  @Autowired 
+  EmployeeRepo employeeRepo;
 
   @Autowired
   private JdbcTemplate jdbcTemplate;
@@ -60,54 +60,70 @@ public class DemoApplication {
 
   @GetMapping("/employee")
   public List<Employee> getEmployeesAll() {
-    String sql = "SELECT * FROM employees";
-    return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Employee.class));
+    return employeeRepo.findAll();
   }
 
   @GetMapping("/employee/{id}")
-  public Employee getEmployeeById(@PathVariable("id") long id) {
-    try {
-      Employee employee = jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id = ?",
-          BeanPropertyRowMapper.newInstance(Employee.class), id);
-      return employee;
-    } catch (IncorrectResultSizeDataAccessException e) {
-      return null;
+  public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") long id) {
+    Optional<Employee> employee = employeeRepo.findById(id);
+
+    if (employee.isPresent()) {
+      return new ResponseEntity<>(employee.get(), HttpStatus.OK);
     }
+
+    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
   
 
   @PostMapping("/employee")
-  public Employee createEmployee(@RequestBody Employee employee) {
-      
-    String sqlQuery = "insert into employees(first_name, last_name, yearly_income) " +
-                    "values (?, ?, ?)";
+  public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
 
-    // return ID value 
-    KeyHolder keyHolder = new GeneratedKeyHolder();
-  
-    // execute prepared statement and return ID afterwards
-    jdbcTemplate.update(connection -> {
-      PreparedStatement stmt = connection.prepareStatement(sqlQuery, new String[]{"id"});
-      stmt.setString(1, employee.getFirstName());
-      stmt.setString(2, employee.getLastName());
-      stmt.setLong(3, employee.getYearlyIncome());
-      return stmt;
-    }, keyHolder);
-  
-    Long idNew = keyHolder.getKey().longValue();
-    employee.setId(idNew);
-    return employee;
+    try {
+      Employee employeeNew = employeeRepo.save(employee);
+      return new ResponseEntity<>(employeeNew, HttpStatus.CREATED);
+    }
+    catch(Exception ex) {
+      return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }      
   }
 
   @PatchMapping("/employee/{id}")
-  public int updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employeeUpdate) {
-    return jdbcTemplate.update("UPDATE employees SET yearly_income = ? WHERE id = ?",
-        new Object[] { employeeUpdate.getYearlyIncome(), id });
+  public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employeeDataUpdate) {
+    Optional<Employee> employee = employeeRepo.findById(id);
+
+    // if found => update!
+    if(employee.isPresent()) {
+      Employee employeeToUpdate = employee.get();
+      if(employeeDataUpdate.getFirstName() != null) {
+        employeeToUpdate.setFirstName(employeeDataUpdate.getFirstName());
+      }
+      if(employeeDataUpdate.getLastName() != null) {
+        employeeToUpdate.setLastName(employeeDataUpdate.getLastName());
+      }
+      if(employeeDataUpdate.getYearlyIncome() > 0) {
+        employeeToUpdate.setYearlyIncome(employeeDataUpdate.getYearlyIncome());
+      }
+      Employee employeeUpdated = employeeRepo.save(employeeToUpdate);
+      return new ResponseEntity<>(employeeUpdated, HttpStatus.OK);
+    }
+    else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @DeleteMapping("/employee/{id}")
-  public int deleteEmployee(@PathVariable("id") Long id) {
-    return jdbcTemplate.update("DELETE FROM employees WHERE id = ?", id);
+  public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") Long id) {
+    
+    Optional<Employee> _employeeToDelete = employeeRepo.findById(id);
+
+    if(_employeeToDelete.isPresent()) {
+      Employee employeeToDelete = _employeeToDelete.get();
+      employeeRepo.delete(employeeToDelete);
+      return new ResponseEntity<>(employeeToDelete, HttpStatus.OK);
+    }
+
+    return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+
   }
 
   @GetMapping("/migrate")

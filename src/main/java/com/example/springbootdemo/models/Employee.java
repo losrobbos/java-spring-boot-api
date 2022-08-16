@@ -1,14 +1,23 @@
-package com.example.models;
+package com.example.springbootdemo.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "employees")
 public class Employee {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+  @Column
   private String firstName;
+  @Column
   private String lastName;
+  @Column
   private long yearlyIncome;
 
   public Employee() {
@@ -45,4 +54,11 @@ public class Employee {
   public void setYearlyIncome(long yearlyIncome) {
     this.yearlyIncome = yearlyIncome;
   }
+
+  @Override
+  public String toString() {
+    return "Employee [firstName=" + firstName + ", id=" + id + ", lastName=" + lastName + ", yearlyIncome="
+        + yearlyIncome + "]";
+  }
+  
 }

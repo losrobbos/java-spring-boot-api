@@ -8,7 +8,7 @@ GET {{API_URL}}/migrate
 GET {{API_URL}}/employee
 
 ### Get single employee
-GET {{API_URL}}/employee/3
+GET {{API_URL}}/employee/0
 
 
 ### Create employee
@@ -16,9 +16,9 @@ POST {{API_URL}}/employee
 Content-Type: application/json
 
 {
-  "firstName": "Eduardo",
-  "lastName": "Carlos",
-  "yearlyIncome": 77000
+  "firstName": "Pedro",
+  "lastName": "Puerto",
+  "yearlyIncome": 138000
 }
 
 ### UPDATE employee
@@ -26,7 +26,9 @@ PATCH {{API_URL}}/employee/3
 Content-Type: application/json
 
 {
-  "yearlyIncome": 25000
+  "firstName": "Los",
+  "lastName": "Robbo",
+  "yearlyIncome": 26300
 }
 
 ### DELETE employee
