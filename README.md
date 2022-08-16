@@ -31,17 +31,21 @@ jwt.secret=myLocalSecretio
 ```
 
 In order that Spring Boot loads the given file on startup, you 
-have to start the app, in development, with the profile "local".
+have to run the app in development with a profile, e.g. "local".
 
-Profiles are used to create different ENVIRONMENTS with different configurations, e.g. a different Database connection. You can read more on profiles here: https://www.baeldung.com/spring-profiles 
+Profiles are used to create different ENVIRONMENTS with different configurations, e.g. a different Database connection. 
 
-Depending on the profile that you are in, a correspondig properties file with the config values for that environment, will get loaded. It file with the configuration must contain the profile name.
+You can read more on profiles here: https://www.baeldung.com/spring-profiles 
+
+Depending on the profile that you run your app with, a correspondig properties file (if it exists) with the config values for that environment will get loaded automatically. 
+
+The configuration file must contain the profile name.
 
 Examples:
 Profile "local" => Configuration filename: application-local.properties
 Profile "development" => Configuration filename: application-development.properties
 
-So the profile name determines the file name that Spring will look for.
+So the profile name determines the file name that Spring will look for and will then autodetect and load the file.
 
 There are several ways how you can define your profile for local development.
 
