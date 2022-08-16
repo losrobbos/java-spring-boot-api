@@ -1,8 +1,9 @@
 package com.example.springbootdemo;
 
+import com.example.springbootdemo.models.Employee;
+import com.example.springbootdemo.repos.EmployeeRepo;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -15,27 +16,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.springbootdemo.models.Employee;
-import com.example.springbootdemo.repos.EmployeeRepo;
-
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @SpringBootApplication
 public class DemoApplication {
 
-  // Autowired means: Inject an instance automatically when class instance is created 
-  @Autowired 
+  // Autowired means: Inject an instance automatically when class instance is created
+  @Autowired
   EmployeeRepo employeeRepo;
 
-  @Autowired
-  private JdbcTemplate jdbcTemplate;
-     
   // Read environment variables
   @Value("${server.port}")
   String port;
@@ -73,86 +66,57 @@ public class DemoApplication {
 
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
   }
-  
 
   @PostMapping("/employee")
-  public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-
+  public ResponseEntity<Employee> createEmployee(
+    @RequestBody Employee employee
+  ) {
     try {
       Employee employeeNew = employeeRepo.save(employee);
       return new ResponseEntity<>(employeeNew, HttpStatus.CREATED);
-    }
-    catch(Exception ex) {
+    } catch (Exception ex) {
       return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
-    }      
+    }
   }
 
   @PatchMapping("/employee/{id}")
-  public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long id, @RequestBody Employee employeeDataUpdate) {
+  public ResponseEntity<Employee> updateEmployee(
+    @PathVariable("id") Long id,
+    @RequestBody Employee employeeDataUpdate
+  ) {
     Optional<Employee> employee = employeeRepo.findById(id);
 
     // if found => update!
-    if(employee.isPresent()) {
+    if (employee.isPresent()) {
       Employee employeeToUpdate = employee.get();
-      if(employeeDataUpdate.getFirstName() != null) {
+      if (employeeDataUpdate.getFirstName() != null) {
         employeeToUpdate.setFirstName(employeeDataUpdate.getFirstName());
       }
-      if(employeeDataUpdate.getLastName() != null) {
+      if (employeeDataUpdate.getLastName() != null) {
         employeeToUpdate.setLastName(employeeDataUpdate.getLastName());
       }
-      if(employeeDataUpdate.getYearlyIncome() > 0) {
+      if (employeeDataUpdate.getYearlyIncome() > 0) {
         employeeToUpdate.setYearlyIncome(employeeDataUpdate.getYearlyIncome());
       }
       Employee employeeUpdated = employeeRepo.save(employeeToUpdate);
       return new ResponseEntity<>(employeeUpdated, HttpStatus.OK);
-    }
-    else {
+    } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
   @DeleteMapping("/employee/{id}")
   public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") Long id) {
-    
     Optional<Employee> _employeeToDelete = employeeRepo.findById(id);
 
-    if(_employeeToDelete.isPresent()) {
+    if (_employeeToDelete.isPresent()) {
       Employee employeeToDelete = _employeeToDelete.get();
       employeeRepo.delete(employeeToDelete);
       return new ResponseEntity<>(employeeToDelete, HttpStatus.OK);
     }
 
     return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-
   }
-
-  @GetMapping("/migrate")
-  public int migrate() {
-    
-    // CREATE topics table
-    jdbcTemplate.execute("""
-      CREATE TABLE IF NOT EXISTS topics (
-      id SERIAL PRIMARY KEY,
-      title VARCHAR(50) NOT NULL,
-      description TEXT NULL
-    );""");
-
-    // CREATE employee tables
-    jdbcTemplate.execute("""
-    CREATE TABLE IF NOT EXISTS employees (
-      id SERIAL PRIMARY KEY,
-      first_name varchar(100) NOT NULL,
-      last_name varchar(100) NOT NULL,
-      yearly_income integer NOT NULL
-    );""");
-
-
-    int result = jdbcTemplate.queryForObject(
-    "SELECT COUNT(*) FROM employees", Integer.class);
-
-    return result;
-  }
-
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);

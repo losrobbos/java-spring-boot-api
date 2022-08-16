@@ -2,13 +2,13 @@
 @API_URL = http://localhost:5000
 
 ### Create tables
-GET {{API_URL}}/migrate
+# GET {{API_URL}}/migrate
 
 ### Get all employees
 GET {{API_URL}}/employee
 
 ### Get single employee
-GET {{API_URL}}/employee/0
+GET {{API_URL}}/employee/1
 
 
 ### Create employee
@@ -16,20 +16,18 @@ POST {{API_URL}}/employee
 Content-Type: application/json
 
 {
-  "firstName": "Pedro",
-  "lastName": "Puerto",
-  "yearlyIncome": 138000
+  "firstName": "Paula",
+  "lastName": "Pintes",
+  "yearlyIncome": 300000
 }
 
 ### UPDATE employee
-PATCH {{API_URL}}/employee/3
+PATCH {{API_URL}}/employee/2
 Content-Type: application/json
 
 {
-  "firstName": "Los",
-  "lastName": "Robbo",
   "yearlyIncome": 26300
 }
 
 ### DELETE employee
-DELETE  {{API_URL}}/employee/2
+DELETE  {{API_URL}}/employee/1
