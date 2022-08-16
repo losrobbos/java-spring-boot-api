@@ -1,3 +1,4 @@
+# @API_URL = https://spring-boot-rob.herokuapp.com
 @API_URL = http://localhost:5000
 
 ### Create tables
@@ -15,9 +16,9 @@ POST {{API_URL}}/employee
 Content-Type: application/json
 
 {
-  "firstName": "Xabi",
-  "lastName": "Alonso",
-  "yearlyIncome": 200000
+  "firstName": "Eduardo",
+  "lastName": "Carlos",
+  "yearlyIncome": 77000
 }
 
 ### UPDATE employee
