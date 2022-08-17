@@ -19,7 +19,7 @@
 
 In Spring Boot environment variable configuration is not done with .env files like e.g. in the Node or PHP world.
 
-Instead so calles "properties" Files are used.
+Instead so called "properties" files are used.
 
 You have a default "application.properties" file, with relevant config settings. It is located in the folder src/main/resources of a Spring Boot App.
 
