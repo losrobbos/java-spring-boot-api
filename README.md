@@ -156,7 +156,7 @@ https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku
 
 In order to deploy this app, you do not need to run the spring-boot CLI, because you already have the app created. So you can skip that part
 
-Also please setup the Postgres Addon like shown in the article!
+Also please setup the Postgres Addon in your created Heroku App like shown in the Heroku Devcenter article above!
 This way you get a Postgres Database out of the box
 
 In case you already have your own SQL database:
