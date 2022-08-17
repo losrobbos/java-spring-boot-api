@@ -4,6 +4,8 @@
 
 In case you wanna specialize on backend development, Java is a natural choice. It is still widely used in companies.
 
+There are many more programming language options for backend development. This video here nicely summarizes the Pro and Cons of using Java instead of other prominent web development languages like PHP, Python, C# or Node (even though from 2019, it is still very accurate): https://www.youtube.com/watch?v=mCOSgYilwNs. So Java is definitely not the easiest Ecosystem to get yourself into. But probably still the one with the best Job opportunities, short & long term.
+
 For Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
 So a pre-configured version of Spring exists, called "Spring Boot" which gives you a lot of basic libraries and configurations out of the box, to e.g. start quickly with creating a RESTful API with operations against a database of your choice.
 
