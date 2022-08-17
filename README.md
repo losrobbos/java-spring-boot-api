@@ -117,15 +117,20 @@ But if it does not find it, it will default to loading the values from applicati
 So please: KEEP the application-local.properties out of git to prevent accidental deployment!
 (it is already added to .gitignore file in this project, so usually nothing to do here)
 
+
 ## Running the app
 
-If you have configured your VScode with the Spring Boot Extension, you can easily navigate to file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
+If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
 
-A little "Play" icon should appear at the top right of your file. Click and check if the app starts up!
+A little "Play" icon should appear at the top right of your file. 
+
+Click that and check if the app starts up!
 
 Alternatively you can also launch the app from the terminal:
 
 `mvnw spring-boot:run`
+
+Under the hood now the build tool "Maven" will launch, install and bind all necessary dependencies and then starts your app. Hopefully successfully :)
 
 
 ## Deployment
