@@ -88,8 +88,8 @@ Depending on the profile that you run your app with, a correspondig properties f
 The configuration file just must contain the profile name.
 
 Examples:
-Profile "local" => Configuration filename: application-local.properties
-Profile "development" => Configuration filename: application-development.properties
+- Profile "local" => Configuration filename: application-local.properties
+- Profile "development" => Configuration filename: application-development.properties
 
 So the profile name determines the file name that Spring will look for and will then autodetect and load the file.
 
