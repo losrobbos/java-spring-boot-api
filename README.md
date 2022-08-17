@@ -51,7 +51,10 @@ One is to export an environment variable "spring_profiles_active" which will be 
 
 Another is to start the app from the command line specifying the profile:
 
-`./mvnw spring-boot:run -Dspring.profiles.active=dev`
+`./mvnw -Dspring.profiles.active=local spring-boot:run `
+
+`./mvnw spring-boot:run -Drun.jvmArguments="spring.profiles.active=local"`
+
 
 That's it.
 
