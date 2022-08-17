@@ -47,18 +47,49 @@ Profile "development" => Configuration filename: application-development.propert
 
 So the profile name determines the file name that Spring will look for and will then autodetect and load the file.
 
-There are several ways how you can define your profile for local development.
+In your application.properties the "local" profile is already pre-configured to be picked on startup:
+spring.profiles.active=local
 
-One is to export an environment variable "spring_profiles_active" which will be checked by Spring Boot on startup:
+So you just need to provide the file "application-local.properties" and your env for local development should get loaded.
 
-`export spring_profiles_active=local`
+In production, so e.g. when you deploy to Heroku, it will try to lookup an application-local.properties too, but if it does not find it, it will load the defaults from application.properties -> which loads the configuration form the environment / config vars you set on the server.
 
-Another is to start the app from the command line specifying the profile:
+So please: KEEP the application-local.properties out of git!
+(it is already added to .gitignore file, so usually nothing to do here)
 
-`./mvnw -Dspring.profiles.active=local spring-boot:run `
+That's it!
 
-`./mvnw spring-boot:run -Drun.jvmArguments="spring.profiles.active=local"`
+## Running the app
+
+If you have configured your VScode with the Spring Boot Extension, you can easily navigate to file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
+
+A little "Play" icon should appear at the top right of your file. Click and check if the app starts up!
+
+Alternatively you can also launch the app from the terminal:
+
+`mvnw spring-boot:run`
 
 
-That's it.
+## Deployment
 
+You can deploy a Spring boot app for free e.g. on Heroku:
+https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku
+
+In order to deploy this app, you do not need to run the spring-boot CLI, because you already have the app created. So you can skip that part
+
+Also please setup the Postgres Addon like shown in the article!
+This way you get a Postgres Database out of the box
+
+In case you already have your own SQL database:
+Please provide the Environment / Config Vars in your Heroku Dashboard of your App => Tab Settings:
+
+```
+DATABASE_URL
+DATABASE_USERNAME
+DATABASE_PASSWORD
+```
+
+Usually you do not need to configure anything extra on Heroku.
+It should run out of the box.
+
+Enjoy!
