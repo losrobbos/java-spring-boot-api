@@ -1,5 +1,16 @@
 # Java Spring Boot Demo
 
+## Intro
+
+In case you wanna specialize on backend development, Java is a natural choice. It is still widely used in companies.
+
+For Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
+So a pre-configured version of Spring exists, called "Spring Boot" which gives you a lot of basic libraries and configurations out of the box, to e.g. start quickly with creating a RESTful API.
+
+In order to checkout the fundamentals of the Spring Framework you might checkout this excellent high level video first:
+https://www.youtube.com/watch?v=aS9SQITRocc
+
+
 ## Prerequisites
 
 - Java SDK or OpenJDK 17
