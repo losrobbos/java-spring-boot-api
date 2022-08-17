@@ -44,17 +44,21 @@ spring.jpa.hibernate.ddl-auto=update
 jwt.secret=${JWT_SECRET:""}
 ```
 
+The Environment variables are the one inside the ${...} blocks (you can compare it to process.env.DATABASE_URL in Node)
+
 This way the app will be easily deployable to production, grabbing all its config like database from the Server Environment / Config vars.
 
 But in order to setup your environment for LOCAL DEVELOPMENT, you have two choices:
 - set the same environment variables on your system (not recommended - it would get shared with other apps)
-- set the local environment by a separate properties file!
-
+- set the local environment by a separate properties file that will overwrite (!) the settings from application.properties
+ 
 #### Create local properties / environment file
 
-Create a file "application-local.properties" inside Folder src/main/resources:
+Create a file "application-local.properties" inside Folder src/main/resources.
 
-Add the following environment variables and replace the values with the details from your database.
+This file pretty much has the same purpose as your .env file from other languages. Provide an Environment Config for local development.
+
+Add the following config variables and replace the values with the details from your database.
 
 ```
 server.port=5000
