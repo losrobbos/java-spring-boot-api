@@ -73,6 +73,8 @@ jwt.secret=myLocalSecretio
 
 ```
 
+#### Loading the local environment file
+
 Now how to load that file instead of application.properties?
 
 In order that Spring Boot loads the given file on startup, you have to launch the app launch with a profile, e.g. "local". 
@@ -97,14 +99,23 @@ In your application.properties the "local" profile is already pre-configured to 
 
 `spring.profiles.active=local`
 
-So when just need to provide the file "application-local.properties" and your env for local development should get loaded.
+So you just need to provide the file "application-local.properties" in src/main/resources and your env for local development should get loaded.
 
-In production, so e.g. when you deploy to Heroku, it will try to lookup an application-local.properties too, but if it does not find it, it will load the defaults from application.properties -> which loads the configuration form the environment / config vars you set on the server.
+Spring will automatically OVERWRITE all settings in application.properties with the ones in your local properties file!
 
-So please: KEEP the application-local.properties out of git!
-(it is already added to .gitignore file, so usually nothing to do here)
 
-That's it!
+#### Production environment
+
+For production you could create another profile, e.g. "prod" or "production".
+
+But actually you do not need that, because on production your "application.properties" file will kick in and load the configuration from the environment. So you just need to setup all environment variables on your server and it should work out of the box.
+
+In production, e.g. when you deploy to Heroku, Spring Boot will try to lookup an application-local.properties first.
+
+But if it does not find it, it will default to loading the values from application.properties. Which loads the configuration form the environment / config vars you set on the server.
+
+So please: KEEP the application-local.properties out of git to prevent accidental deployment!
+(it is already added to .gitignore file in this project, so usually nothing to do here)
 
 ## Running the app
 
