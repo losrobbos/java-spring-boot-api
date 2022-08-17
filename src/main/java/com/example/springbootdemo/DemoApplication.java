@@ -32,6 +32,9 @@ public class DemoApplication {
   @Value("${server.port}")
   String port;
 
+  @Value("${spring.datasource.url}")
+  String dbUrl;
+
   @GetMapping("/")
   @ResponseBody
   String home() {
@@ -43,6 +46,11 @@ public class DemoApplication {
     @RequestParam(value = "name", defaultValue = "World") String name
   ) {
     return String.format("Hello %s!", name);
+  }
+
+  @GetMapping("/dbinfo") 
+  public String dbinfo() {
+    return dbUrl;
   }
 
   @GetMapping("/about")
