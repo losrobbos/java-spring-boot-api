@@ -149,3 +149,4 @@ https://www.youtube.com/watch?v=GX3D0OIFOhE
 And here a great article that shows how to develop a Spring Boot REST API with Database CRUD (Create / Read / Update / Delete):
 
 https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/
+(it is very compact and dense, so this is a quick way to a first running API)
