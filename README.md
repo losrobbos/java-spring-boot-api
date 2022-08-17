@@ -128,7 +128,7 @@ But actually you do not need that, because on production your "application.prope
 
 In production, e.g. when you deploy to Heroku, Spring Boot will try to lookup an application-local.properties first.
 
-But if it does not find it, it will default to loading the values from application.properties. Which loads the configuration form the environment / config vars you set on the server.
+But if it does not find it, it will default to loading the values from application.properties. Which loads the configuration from the environment / config vars you set on the server.
 
 So please: Keep the application-local.properties out of git to prevent accidental deployment!
 (it is already added to .gitignore file in this project, so usually nothing to do here)
