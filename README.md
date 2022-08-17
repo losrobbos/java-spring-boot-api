@@ -57,7 +57,7 @@ spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
 
 
-jwt.secret=${JWT_SECRET:""}
+jwt.secret=${JWT_SECRET:"myHolySecret"}
 ```
 
 The Environment variables are the one inside the ${...} blocks (you can compare it to process.env.YOUR_ENV_VAR in Node)
