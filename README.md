@@ -190,4 +190,4 @@ And here a great article that shows how to develop a Spring Boot REST API with D
 
 Authentication using JWT:
 - https://www.youtube.com/watch?v=X80nJ5T7YpE (bit dated, but JWT has not changed in a while too :))
-- https://www.youtube.com/watch?v=VVn9OG9nfH0 (more recent and complete walkthrough - but pretty long)
+- https://www.youtube.com/watch?v=VVn9OG9nfH0 (more recent and complete walkthrough. pretty long, but worth it)
