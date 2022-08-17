@@ -44,7 +44,7 @@ spring.jpa.hibernate.ddl-auto=update
 jwt.secret=${JWT_SECRET:""}
 ```
 
-The Environment variables are the one inside the ${...} blocks (you can compare it to process.env.DATABASE_URL in Node)
+The Environment variables are the one inside the ${...} blocks (you can compare it to process.env.YOUR_ENV_VAR in Node)
 
 This way the app will be easily deployable to production, grabbing all its config like database from the Server Environment / Config vars.
 
