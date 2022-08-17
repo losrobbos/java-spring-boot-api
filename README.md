@@ -11,8 +11,9 @@ However: Before getting into Java, you will have to say "YES" to the so called "
 For Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
 So a pre-configured version of Spring exists, called "Spring Boot" which gives you a lot of basic libraries and configurations out of the box, to e.g. start quickly with creating a RESTful API with operations against a database of your choice.
 
-In order to checkout the fundamentals of the Spring Framework you might checkout this excellent high level video first:
-https://www.youtube.com/watch?v=aS9SQITRocc
+In order to checkout the fundamentals of the Spring Framework you might checkout this excellent high level videos first:
+- Spring Concepts (High Level): https://www.youtube.com/watch?v=gq4S-ovWVlM
+- Spring Flow with Container & Beans: https://www.youtube.com/watch?v=aS9SQITRocc
 
 
 ## Prerequisites
