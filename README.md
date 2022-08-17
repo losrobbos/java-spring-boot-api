@@ -144,7 +144,7 @@ Click that and check if the app starts up!
 
 Alternatively you can also launch the app from the terminal:
 
-`mvnw spring-boot:run`
+`./mvnw spring-boot:run`
 
 Under the hood now the build tool "Maven" will launch, install and bind all necessary dependencies and then starts your app. Hopefully successfully :)
 
