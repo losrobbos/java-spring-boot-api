@@ -189,3 +189,7 @@ https://www.youtube.com/watch?v=GX3D0OIFOhE
 And here a great article that shows how to develop a Spring Boot REST API with Database CRUD (Create / Read / Update / Delete):
 https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/
 (it is very compact and dense, so this is a quick way to a first running API)
+
+Authentication using JWT:
+- https://www.youtube.com/watch?v=X80nJ5T7YpE (bit dated, but JWT has not changed in a while too :))
+- https://www.youtube.com/watch?v=VVn9OG9nfH0 (more recent and complete walkthrough - but pretty long)
