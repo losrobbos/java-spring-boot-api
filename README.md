@@ -50,7 +50,9 @@ This way the app will be easily deployable to production, grabbing all its confi
 
 But in order to setup your environment for LOCAL DEVELOPMENT, you have two choices:
 - set the same environment variables on your system (not recommended - it would get shared with other apps)
-- set the local environment by a separate properties file that will overwrite (!) the settings from application.properties
+- set the local environment by a separate properties file that will overwrite (!) the settings from application.properties. That local environment file must get added to .gitignore to keep it out of Git
+
+So we will choose the second option.
  
 #### Create local properties / environment file
 
