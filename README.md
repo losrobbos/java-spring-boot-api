@@ -77,7 +77,7 @@ jwt.secret=myLocalSecretio
 
 Now how to load that file instead of application.properties?
 
-In order that Spring Boot loads the given file on startup, you have to launch the app launch with a profile, e.g. "local". 
+In order that Spring Boot loads the given file on startup, you need to launch the app with a so called "profile".
 
 "Profile" is the term Spring Boot uses for "Environment". So don't get confused here ;)
 
@@ -85,7 +85,7 @@ Profiles are used to serve different ENVIRONMENTS with different configurations,
 
 You can read more on profiles here: https://www.baeldung.com/spring-profiles 
 
-Depending on the profile that you run your app with, a correspondig properties file (if it exists) with the config values for that environment will get loaded automatically. 
+Depending on the profile that you run your app with, a matching properties file (if it exists) with the config values for that environment will get loaded automatically (and will overwrite the settings in application.properties!)
 
 The configuration file just must contain the profile name.
 
