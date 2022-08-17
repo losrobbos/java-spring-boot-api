@@ -3,21 +3,58 @@
 ## Prerequisites
 
 - Java SDK or OpenJDK 17
+  - Install e.g. using apt on Ubuntu: `sudo apt install openjdk-17`
+  - For other Operating systems - please checkout the official documentation: https://docs.oracle.com/en/java/javase/18/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A
 - Spring Boot with Maven
   - Checkout the recommended Vscode plugins for easy setup and startup of a Spring Boot App: https://code.visualstudio.com/docs/java/java-spring-boot
+  - Or if you prefer a short video with all the steps: https://www.youtube.com/watch?v=dq1z9t03mXI
 - An existing Postgres or MySQL database to connect to
   - You could install either Postgres or MySQL locally on your system
-  - You could register a free postgres database on Heroku: https://devcenter.heroku.com/articles/heroku-postgresql
   - You could register a free MySQL database on: https://www.freesqldatabase.com/
+  - You could register a free postgres database on Heroku: https://devcenter.heroku.com/articles/heroku-postgresql
 
 ## Setup
 
-### Create a local configuration / environment
+### Create configuration / environment
 
-Create a file "application-local.properties" inside Folder src/main/resources
+In Spring Boot environment variable configuration is not done with .env files like e.g. in the Node or PHP world.
 
-Add the following environment variables and point them to your database.
-Replace the values with the details from your database
+Instead so calles "properties" Files are used.
+
+You have a default "application.properties" file, with relevant config settings. It is located in the folder src/main/resources of a Spring Boot App.
+
+Ideally this file loads its values from the ENVIRONMENT.
+
+As an Example - the application.properties from this app:
+```
+spring.profiles.active=local
+
+# in case no port is set in environment => use default 5000
+server.port=${PORT:5000}
+
+spring.datasource.url=${DATABASE_URL:""}
+spring.datasource.username=${DATABASE_USERNAME:""}
+spring.datasource.password=${DATABASE_PASSWORD:""}
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.properties.hibernate.dialect= org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+
+
+jwt.secret=${JWT_SECRET:""}
+```
+
+This way the app will be easily deployable to production, grabbing all its config like database from the Server Environment / Config vars.
+
+But in order to setup your environment for LOCAL DEVELOPMENT, you have two choices:
+- set the same environment variables on your system (not recommended - it would get shared with other apps)
+- set the local environment by a separate properties file!
+
+#### Create local properties / environment file
+
+Create a file "application-local.properties" inside Folder src/main/resources:
+
+Add the following environment variables and replace the values with the details from your database.
 
 ```
 server.port=5000
@@ -30,16 +67,19 @@ jwt.secret=myLocalSecretio
 
 ```
 
-In order that Spring Boot loads the given file on startup, you 
-have to run the app in development with a profile, e.g. "local".
+Now how to load that file instead of application.properties?
 
-Profiles are used to create different ENVIRONMENTS with different configurations, e.g. a different Database connection. 
+In order that Spring Boot loads the given file on startup, you have to launch the app launch with a profile, e.g. "local". 
+
+"Profile" is the term Spring Boot uses for "Environment". So don't get confused here ;)
+
+Profiles are used to serve different ENVIRONMENTS with different configurations, e.g. a different Database connection.
 
 You can read more on profiles here: https://www.baeldung.com/spring-profiles 
 
 Depending on the profile that you run your app with, a correspondig properties file (if it exists) with the config values for that environment will get loaded automatically. 
 
-The configuration file must contain the profile name.
+The configuration file just must contain the profile name.
 
 Examples:
 Profile "local" => Configuration filename: application-local.properties
@@ -48,9 +88,10 @@ Profile "development" => Configuration filename: application-development.propert
 So the profile name determines the file name that Spring will look for and will then autodetect and load the file.
 
 In your application.properties the "local" profile is already pre-configured to be picked on startup:
-spring.profiles.active=local
 
-So you just need to provide the file "application-local.properties" and your env for local development should get loaded.
+`spring.profiles.active=local`
+
+So when just need to provide the file "application-local.properties" and your env for local development should get loaded.
 
 In production, so e.g. when you deploy to Heroku, it will try to lookup an application-local.properties too, but if it does not find it, it will load the defaults from application.properties -> which loads the configuration form the environment / config vars you set on the server.
 
