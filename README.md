@@ -138,11 +138,14 @@ Enjoy!
 ## Resources / Learning
 
 In order to understand the big picture of Spring, this video series - even though a bit dated, is still excellent: 
-- https://www.youtube.com/watch?v=msXL2oDexqw&list=PLqq-6Pq4lTTbx8p2oCgcAQGQyqN8XeA1x
+
+https://www.youtube.com/watch?v=msXL2oDexqw&list=PLqq-6Pq4lTTbx8p2oCgcAQGQyqN8XeA1x
 (most of the info is still relevant)
 
 In order to understand how you work with databases with Spring Boot there is a lot of jargon out there (JDBC, JPA, Hibernate, Spring Boot Data JPA). This video here explains how it all works together nicely:
+
 https://www.youtube.com/watch?v=GX3D0OIFOhE
 
 And here a great article that shows how to develop a Spring Boot REST API with Database CRUD (Create / Read / Update / Delete):
+
 https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/
