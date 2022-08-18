@@ -1,5 +1,6 @@
 # @API_URL = https://spring-boot-rob.herokuapp.com
 @API_URL = http://localhost:5000
+@TOKEN = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JAcm9iLmNvbSIsImV4cCI6MTY2MDc4NDc0MH0.wduFwQ4ueMU1J41EH4iNUDWQX7SGH1EHzJsY1daWnGM
 
 ### HOMEPAGE
 GET {{API_URL}}/
@@ -11,30 +12,43 @@ POST {{API_URL}}/auth/signup
 Content-Type: application/json
 
 {
+  "email": "rob@rob.rob",
+  "password": "hey123"
+}
+
+### LOGIN
+POST {{API_URL}}/auth/login
+Content-Type: application/json
+
+{
   "email": "rob@rob.com",
   "password": "hey123"
 }
 
+
 ### Get all employees
 GET {{API_URL}}/employee
-Authorization: hello123
+Authorization: {{TOKEN}}
 
 ### Get single employee
-GET {{API_URL}}/employee/1
+GET {{API_URL}}/employee/2
+Authorization: {{TOKEN}}
 
 
 ### Create employee
 POST {{API_URL}}/employee
+Authorization: {{TOKEN}}
 Content-Type: application/json
 
 {
-  "firstName": "Paula",
-  "lastName": "Pintes",
-  "yearlyIncome": 300000
+  "firstName": "Cordula",
+  "lastName": "Römer",
+  "yearlyIncome": 17000
 }
 
 ### UPDATE employee
-PATCH {{API_URL}}/employee/2
+PATCH {{API_URL}}/employee/4
+Authorization: {{TOKEN}}
 Content-Type: application/json
 
 {
@@ -42,4 +56,5 @@ Content-Type: application/json
 }
 
 ### DELETE employee
-DELETE  {{API_URL}}/employee/1
+DELETE  {{API_URL}}/employee/4
+Authorization: {{TOKEN}}
