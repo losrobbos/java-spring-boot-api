@@ -1,4 +1,4 @@
-package com.example.springbootdemo.models;
+package com.example.springbootdemo.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

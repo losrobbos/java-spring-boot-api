@@ -1,9 +1,11 @@
-package com.example.springbootdemo.models;
+package com.example.springbootdemo.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "topics")
 public class Topic {
   @Id
   private String id;

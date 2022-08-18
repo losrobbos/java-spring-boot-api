@@ -189,5 +189,7 @@ And here a great article that shows how to develop a Spring Boot REST API with D
 - https://www.bezkoder.com/spring-boot-jpa-crud-rest-api/ (it is very compact and dense, so this is a quick way to a first running API)
 
 Authentication using JWT:
+- https://www.youtube.com/watch?v=mn5UZYtPLjg (german - sehr gute, einfache Einführung in JWT mit Code)
 - https://www.youtube.com/watch?v=X80nJ5T7YpE (bit dated, but JWT has not changed in a while too :))
 - https://www.youtube.com/watch?v=VVn9OG9nfH0 (more recent and complete walkthrough. pretty long, but worth it)
+- https://www.bezkoder.com/spring-boot-jwt-authentication (in depth article)

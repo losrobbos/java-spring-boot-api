@@ -1,11 +1,23 @@
 # @API_URL = https://spring-boot-rob.herokuapp.com
 @API_URL = http://localhost:5000
 
-### Create tables
-# GET {{API_URL}}/migrate
+### HOMEPAGE
+GET {{API_URL}}/
+
+# AUTH routes
+
+### SIGNUP
+POST {{API_URL}}/auth/signup
+Content-Type: application/json
+
+{
+  "email": "rob@rob.com",
+  "password": "hey123"
+}
 
 ### Get all employees
 GET {{API_URL}}/employee
+Authorization: hello123
 
 ### Get single employee
 GET {{API_URL}}/employee/1

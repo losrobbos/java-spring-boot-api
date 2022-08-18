@@ -1,7 +1,9 @@
 package com.example.springbootdemo;
 
-import com.example.springbootdemo.models.Employee;
-import com.example.springbootdemo.repos.EmployeeRepo;
+import com.example.springbootdemo.entities.Employee;
+import com.example.springbootdemo.entities.User;
+import com.example.springbootdemo.repositories.EmployeeRepo;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,9 +60,11 @@ public class DemoApplication {
     return "<h3>It's a me. Luigi!</h3>";
   }
 
+  // EMPLOYEE resource routes
   @GetMapping("/employee")
   public List<Employee> getEmployeesAll() {
     return employeeRepo.findAll();
+    
   }
 
   @GetMapping("/employee/{id}")
