@@ -160,6 +160,15 @@ Running the build with JRE:
 
 `java target/<nameOfYourGeneratedJar>.jar`
 
+## Docker container build
+
+Use the defined Dockerfile to create an image containing the java runtime, spring boot, maven + your app code jar:
+
+`docker build -t <spring-demo> .`
+
+By default it exposes the port 5000.
+
+
 ## Deployment
 
 You can deploy a Spring boot app for free e.g. on Heroku:
