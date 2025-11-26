@@ -2,6 +2,12 @@
 
 ## Intro
 
+In case you wanna specialize on backend development, Java is a natural choice. It is still widely used in companies.
+
+There are many more programming language options for backend development. This video here nicely summarizes the Pro and Cons of using Java instead of other prominent web development languages like PHP, Python, C# or Node (even though from 2019, it is still very accurate): https://www.youtube.com/watch?v=mCOSgYilwNs.
+
+However: Before getting into Java, you will have to say "Yes" to the so called "Object Oriented Programming" (OOP) paradigm. In case you have no idea what that is, getting right into the Spring framework is probably not a good first step. It makes sense to train it a bit in the language you are currently using (e.g. in JavaScript you can do OOP to), then trying out your first Java program (without a framework) using some classes calling each other and get a little bit used to Java terminology. Only afterwards it makes sense to then dive into the Spring experience.
+
 For Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
 So a pre-configured version of Spring exists, called "Spring Boot" which gives you a lot of basic libraries and configurations out of the box, to e.g. start quickly with creating a RESTful API with operations against a database of your choice.
 
@@ -54,9 +60,16 @@ spring.jpa.hibernate.ddl-auto=update
 jwt.secret=${JWT_SECRET:"myHolySecret"}
 ```
 
-In order to setup your environment for LOCAL DEVELOPMENT:
-Set the local environment by a separate properties file that will override (!) the settings from application.properties. That local environment file must get added to .gitignore to keep it out of Git
+The Environment variables are the one inside the ${...} blocks (you can compare it to process.env.YOUR_ENV_VAR in Node)
 
+This way the app will be easily deployable to production, grabbing all its config like database from the Server Environment / Config vars.
+
+But in order to setup your environment for LOCAL DEVELOPMENT, you have two choices:
+- set the same environment variables on your system (not recommended - it would get shared with other apps)
+- set the local environment by a separate properties file that will overwrite (!) the settings from application.properties. That local environment file must get added to .gitignore to keep it out of Git
+
+So we will choose the second option.
+ 
 #### Create local properties / environment file
 
 Create a file "application-local.properties" inside Folder src/main/resources.
@@ -121,19 +134,6 @@ So please: Keep the application-local.properties out of git to prevent accidenta
 (it is already added to .gitignore file in this project, so usually nothing to do here)
 
 
-## Authentication
-
-The App utilizes JWT (JSON Web Token) for protecting routes.
-
-In order to receive a token, call the /auth/login route and provide 
-the fields "email" and "password" in the request JSON body.
-
-### Configuring protected routes
-
-The configuration of which routes are public and which private (=protected by token) is configured in the File "SecurityConfig.java" at:
-src\main\java\com\example\springbootdemo\config\SecurityConfig.java
-
-
 ## Running the app
 
 If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
@@ -148,17 +148,6 @@ Alternatively you can also launch the app from the terminal:
 
 Under the hood now the build tool "Maven" will launch, install and bind all necessary dependencies and then starts your app. Hopefully successfully :)
 
-
-## Building
-
-You can use this command to create a Jar File into the folder "target" 
-(comparable to the classical "build" output folder in the JS World)
-
-`./mvnw clean package -DskipTests`
-
-Running the build with JRE:
-
-`java target/<nameOfYourGeneratedJar>.jar`
 
 ## Deployment
 
