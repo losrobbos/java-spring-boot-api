@@ -2,7 +2,7 @@
 
 ## Intro
 
-For Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
+For Java Backend API Development the Framework "Spring" is by far the most commonly used. But Spring is a super complex multi purpose framework. 
 So a pre-configured version of Spring exists, called "Spring Boot" which gives you a lot of basic libraries and configurations out of the box, to e.g. start quickly with creating a RESTful API with operations against a database of your choice.
 
 In order to checkout the fundamentals of the Spring Framework you might checkout this helpful high level videos first:
@@ -21,7 +21,7 @@ In order to checkout the fundamentals of the Spring Framework you might checkout
 - An existing Postgres or MySQL database to connect to
   - You could install either Postgres or MySQL locally on your system
   - You could register a free MySQL database on: https://www.freesqldatabase.com/
-  - You could register a free postgres database on Heroku: https://devcenter.heroku.com/articles/heroku-postgresql
+  - You could register a free postgres database on Render: https://render.com/docs/postgresql-creating-connecting
 
 ## Setup
 
@@ -136,7 +136,7 @@ So please: Keep the application-local.properties out of git to prevent accidenta
 
 ## Running the app with Maven (Java / JRE required on your PC)
 
-If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
+If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file [/src/main/java/com/example/springbootdemo/DemoApplication.java](/src/main/java/com/example/springbootdemo/DemoApplication.java) and open it.
 
 A little "Play" icon should appear at the top right of your file. 
 
@@ -197,7 +197,7 @@ You can deploy a Spring boot app for free e.g. Render.com.
 A short & concise tutorial:
 https://medium.com/@pmanaktala/deploying-a-spring-boot-application-on-render-4e757dfe92ed
 
-Please ignore the Dockerfile in the portfolio, because you already have it.
+Please ignore the Dockerfile in the article, because you already have one.
 Instead jump right away to the section "Setting up on Render"
 
 In the Environment section you need to define the same Variables that are defined in the .env / .env.sample file. 
