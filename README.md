@@ -134,7 +134,7 @@ The configuration of which routes are public and which private (=protected by to
 src\main\java\com\example\springbootdemo\config\SecurityConfig.java
 
 
-## Running the app
+## Running the app with Maven (Java / JRE required on your PC)
 
 If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
 
@@ -148,8 +148,24 @@ Alternatively you can also launch the app from the terminal:
 
 Under the hood now the build tool "Maven" will launch, install and bind all necessary dependencies and then starts your app. Hopefully successfully :)
 
+## Running the app with docker (no Java required)
 
-## Building
+You can use the attached docker compose file to build the app image & run a container in one go.
+
+### Prepare .env
+
+Create a .env file. See the .env.sample file for the needed env variables.
+Docker compose will automatically inject the contents of this .env file into your container when starting it. So the .env vars will be available to your app at runtime.
+
+### Build image & start the container
+
+`docker compuse up -d`
+
+It will create a container based on the image in the given "Dockerfile".
+Here a java environment is setup.
+
+
+## Building a jar for deployment
 
 You can use this command to create a Jar File into the folder "target" 
 (comparable to the classical "build" output folder in the JS World)
@@ -160,39 +176,32 @@ Running the build with JRE:
 
 `java target/<nameOfYourGeneratedJar>.jar`
 
-## Docker container build
-
-Use the defined Dockerfile to create an image containing the java runtime, spring boot, maven + your app code jar:
-
-`docker build -t <spring-demo> .`
-
-By default it exposes the port 5000.
-
 
 ## Deployment
 
-You can deploy a Spring boot app for free e.g. on Heroku:
-https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku
+You can deploy a Spring boot app for free e.g. Render.com.
 
-In order to deploy this app, you do not need to run the spring-boot CLI, because you already have the app created. So you can skip that part
+A short & concise tutorial:
+https://medium.com/@pmanaktala/deploying-a-spring-boot-application-on-render-4e757dfe92ed
 
-Also please setup the Postgres Addon in your created Heroku App like shown in the Heroku Devcenter article above!
-This way you get a Postgres Database out of the box
+Please ignore the Dockerfile in the portfolio, because you already have it.
+Instead jump right away to the section "Setting up on Render"
 
-In case you already have your own SQL database:
-Please provide the Environment / Config Vars in your Heroku Dashboard of your App => Tab Settings:
+In the Environment section you need to define the same Variables that are defined in the .env / .env.sample file. 
 
 ```
 DATABASE_URL=yourDbUrl
 DATABASE_USERNAME=yourDbUser
 DATABASE_PASSWORD=yourDbPw
+JWT_SECRET=verySecretio
 ```
 
-Heroku will make these variables available and Spring Boot will loadthose into you application.properties file on startup. 
+Render will inject those ENV vars into your container when starting it,
+so they should be available to your app.
 
 And that is it. 
 
-Usually you do not need to configure anything extra on Heroku.
+Usually you do not need to configure anything extra.
 It should run out of the box.
 
 Enjoy!
