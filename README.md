@@ -130,12 +130,12 @@ the fields "email" and "password" in the request JSON body.
 
 ### Configuring protected routes
 
-The configuration of which routes are public and which private (=protected by token) is configured in the File [SecurityConfig.java](src\main\java\com\example\springbootdemo\config\SecurityConfig.java)
+The configuration of which routes are public and which private (=protected by token) is configured in the File [SecurityConfig.java](src/main/java/com/example/springbootdemo/config/SecurityConfig.java)
 
 
 ## Running the app with Maven (Java / JRE required on your PC)
 
-If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
+If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file [/src/main/java/com/example/springbootdemo/DemoApplication.java](/src/main/java/com/example/springbootdemo/DemoApplication.java) and open it.
 
 A little "Play" icon should appear at the top right of your file. 
 
