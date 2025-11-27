@@ -25,6 +25,19 @@ In order to checkout the fundamentals of the Spring Framework you might checkout
 
 ## Setup
 
+### Database
+
+In the configuration (next section) you need to specify your database connection details: DB URL, username & pw.
+
+On first startup of this app, the app will generate three tables into the configured database on startup (if they do not exist):
+
+- users
+- topics
+- employees
+
+So you do not need to setup any data tables manually in your DB, just provide an empty database.
+
+
 ### Create configuration / environment
 
 In Spring Boot environment variable configuration is not done with .env files like e.g. in the Node or PHP world.
@@ -121,19 +134,6 @@ So please: Keep the application-local.properties out of git to prevent accidenta
 (it is already added to .gitignore file in this project, so usually nothing to do here)
 
 
-## Authentication
-
-The App utilizes JWT (JSON Web Token) for protecting routes.
-
-In order to receive a token, call the /auth/login route and provide 
-the fields "email" and "password" in the request JSON body.
-
-### Configuring protected routes
-
-The configuration of which routes are public and which private (=protected by token) is configured in the File "SecurityConfig.java" at:
-src\main\java\com\example\springbootdemo\config\SecurityConfig.java
-
-
 ## Running the app with Maven (Java / JRE required on your PC)
 
 If you have configured your VScode with the Spring Boot Extension, you can easily navigate to the main entry file /src/main/java/com/example/springbootdemo/DemoApplication.java and open it.
@@ -175,6 +175,19 @@ You can use this command to create a Jar File into the folder "target"
 Running the build with JRE:
 
 `java target/<nameOfYourGeneratedJar>.jar`
+
+
+## Authentication - configure protected routes
+
+The App utilizes JWT (JSON Web Token) for protecting routes.
+
+In order to receive a token, call the /auth/login route and provide 
+the fields "email" and "password" in the request JSON body.
+
+### Configuring protected routes
+
+The configuration of which routes are public and which private (=protected by token) is configured in the File "SecurityConfig.java" at:
+src\main\java\com\example\springbootdemo\config\SecurityConfig.java
 
 
 ## Deployment
