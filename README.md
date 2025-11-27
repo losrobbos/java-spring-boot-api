@@ -21,7 +21,7 @@ In order to checkout the fundamentals of the Spring Framework you might checkout
 - An existing Postgres or MySQL database to connect to
   - You could install either Postgres or MySQL locally on your system
   - You could register a free MySQL database on: https://www.freesqldatabase.com/
-  - You could register a free postgres database on Heroku: https://devcenter.heroku.com/articles/heroku-postgresql
+  - You could register a free postgres database on Render: [https://devcenter.heroku.com/articles/heroku-postgresql](https://render.com/docs/postgresql-creating-connecting)
 
 ## Setup
 
@@ -130,8 +130,7 @@ the fields "email" and "password" in the request JSON body.
 
 ### Configuring protected routes
 
-The configuration of which routes are public and which private (=protected by token) is configured in the File "SecurityConfig.java" at:
-src\main\java\com\example\springbootdemo\config\SecurityConfig.java
+The configuration of which routes are public and which private (=protected by token) is configured in the File [SecurityConfig.java](src\main\java\com\example\springbootdemo\config\SecurityConfig.java)
 
 
 ## Running the app with Maven (Java / JRE required on your PC)
