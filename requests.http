@@ -1,4 +1,4 @@
-# @API_URL = https://spring-boot-rob.herokuapp.com
+# @API_URL = https://java-spring-boot-api.onrender.com
 @API_URL = http://localhost:5000
 @TOKEN = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyb2JAcm9iLmNvbSIsImV4cCI6MTY2MDc4NDc0MH0.wduFwQ4ueMU1J41EH4iNUDWQX7SGH1EHzJsY1daWnGM
 
@@ -21,7 +21,7 @@ POST {{API_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "rob@rob.com",
+  "email": "rob@rob.rob",
   "password": "hey123"
 }
 
