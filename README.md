@@ -183,7 +183,7 @@ You can deploy a Spring boot app for free e.g. Render.com.
 A short & concise tutorial:
 https://medium.com/@pmanaktala/deploying-a-spring-boot-application-on-render-4e757dfe92ed
 
-Please ignore the Dockerfile in the portfolio, because you already have it.
+Please ignore the Dockerfile in the article, because you already have one.
 Instead jump right away to the section "Setting up on Render"
 
 In the Environment section you need to define the same Variables that are defined in the .env / .env.sample file. 
