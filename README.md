@@ -12,7 +12,7 @@ In order to checkout the fundamentals of the Spring Framework you might checkout
 
 ## Prerequisites
 
-- Java SDK or OpenJDK 17
+- Either Docker OR a Java SDK / OpenJDK 17
   - Install e.g. using apt on Ubuntu: `sudo apt install openjdk-17`
   - For other Operating systems - please checkout the official documentation: https://docs.oracle.com/en/java/javase/18/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A
 - Spring Boot with Maven
